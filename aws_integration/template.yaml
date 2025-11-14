@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Django Ticket System with Lambda and API Gateway
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+    Runtime: python3.12
+
+Resources:
+  DjangoTicketAPI:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: django-ticket-api
+      Handler: aws_integration/lambda_functions/lambda_function.handler
+      CodeUri: ./
+      Environment:
+        Variables:
+          DJANGO_SETTINGS_MODULE: support_app.settings
+      Events:
+        ApiGateway:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY

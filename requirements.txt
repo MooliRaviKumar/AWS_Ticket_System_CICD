@@ -1,0 +1,7 @@
+django>=4.2
+djangorestframework==3.16.1
+boto3==1.40.71
+mysqlclient==2.2.7
+pymysql==1.1.1
+python-dotenv==1.2.1
+gunicorn==23.0.0

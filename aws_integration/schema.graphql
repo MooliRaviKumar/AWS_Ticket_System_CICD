@@ -1,0 +1,23 @@
+type Ticket {
+  id: ID!
+  title: String!
+  description: String
+}
+
+input CreateTicketInput {
+  title: String!
+  description: String
+}
+
+type Query {
+  getTicket(id: ID!): Ticket
+}
+
+type Mutation {
+  createTicket(input: CreateTicketInput!): Ticket
+}
+
+type Subscription {
+  onTicketCreated: Ticket
+    @aws_subscribe(mutations: ["createTicket"])
+}
